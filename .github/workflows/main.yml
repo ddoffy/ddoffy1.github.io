@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ blogs ]
   pull_request:
     branches: [ main ]
 
@@ -25,20 +25,19 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
           
+      # sets up .NET Core SDK 3.1
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1.8.0
+        uses: actions/setup-dotnet@v1
         with:
-          # Optional SDK version to use. If not provided, will install global.json version when available. Examples: 2.2.104, 3.1, 3.1.x
-          dotnet-version:  3.1 # optional
+          dotnet-version: 3.1
+      # publishes Blazor project to the release-folder
       - name: Publish .NET Core Project
-        run: dotnet publish -c Release -o release --nologo
-      
-      - name: copy index.html to 404.html
-        run: touch release/wwwroot/.nojekyll
-      - name: Commit wwwroot to Github Pages
-        uses: JamsIves/github-pages-deploy-actions@3.7.1
+        run: dotnet publish src/Miniblog.Core.csproj -c Release -o release --nologo
+        
+      - name: Commit wwwroot to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: blogs
+          BRANCH: gh-pages
           FOLDER: release/wwwroot
           
