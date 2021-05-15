@@ -1,14 +1,16 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-  </div>
+  <sleep-calculator></sleep-calculator>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { defineComponent } from "vue";
+import SleepCalculator from "../components/SleepCalculator.vue";
 
-@Options({
-  components: {},
-})
-export default class Home extends Vue {}
+export default defineComponent({
+  name: "Home",
+
+  components: {
+    SleepCalculator,
+  },
+});
 </script>
