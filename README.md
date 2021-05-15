@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-# ddoffy.github.io
-=======
 # ddoffy.github.io
 
 ## Project setup
@@ -121,4 +117,3 @@ dotnet run
 
 ## Credits
 SVG icons by <https://simpleicons.org/>
->>>>>>> 0328e37 (Update sources)
